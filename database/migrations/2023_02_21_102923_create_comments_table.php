@@ -13,14 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('articles', function (Blueprint $table) {
+        Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->string('title', 30)->nullable(false);
-            $table->string('content')->nullable(false);
-            $table->string('author')->nullable(false);
-            $table->unsignedBigInteger('category_id');
-            $table->date('published_at')->nullable(false);
+            $table->text('body');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('article_id');
             $table->timestamps();
+
+            $table->foreign('user_id')->refrences('id')->on('users')->onDelete('cascade');
+            $table->foreign('article_id')->refrences('id')->on('articles')->onDelete('cascade');
         });
     }
 
@@ -31,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('articles');
+        Schema::dropIfExists('comments');
     }
 };
