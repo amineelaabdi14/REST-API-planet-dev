@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\EditProfileController;
 use App\Http\Controllers\PasswordResetController;
 use App\Http\Controllers\NewPasswordController;
 use App\Http\Controllers\CommentController;
@@ -18,4 +19,11 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('{article_id}/comments/create', [CommentController::class, 'create']);
 });
 
-Route::apiResource('articles', ArticleController::class);
+Route::controller(ArticleController::class)->group(function () {
+    Route::post('articles', 'index');
+    Route::post('article-add', 'store');
+    Route::post('article/{id}', 'show');
+});
+// Route::apiResource('articles', ArticleController::class);
+Route::post('/edit-profile',[EditProfileController::class,'editInfos']);
+
