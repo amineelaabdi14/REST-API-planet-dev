@@ -25,7 +25,6 @@ Route::controller(ArticleController::class)->group(function () {
     Route::post('article-add', 'store');
     Route::post('article/{id}', 'show');
 });
-// Route::apiResource('articles', ArticleController::class);
 Route::post('/edit-profile',[EditProfileController::class,'editInfos']);
 
 Route::controller(CategoriesController::class)->group(function () {
