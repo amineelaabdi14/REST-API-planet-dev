@@ -13,6 +13,7 @@ class Article extends Model
         'title',
         'content',
         'author',
+        'tags',
         'category_id',
         'published_at'
     ];
