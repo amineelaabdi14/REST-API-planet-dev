@@ -9,10 +9,10 @@ use Illuminate\Http\Request;
 class ArticleController extends Controller
 {
 
-    public function __construct()
-    {
-        $this->middleware('auth:api');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('auth:api');
+    // }
 
     /**
      * Display a listing of the resource.
@@ -35,7 +35,7 @@ class ArticleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreArticleRequest $request)
+    public function store(Request  $request)
     {
         $article = Article::create($request->all());
 
