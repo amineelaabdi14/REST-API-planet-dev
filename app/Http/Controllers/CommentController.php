@@ -34,4 +34,33 @@ class CommentController extends Controller
             ], 400);
         }
     }
+
+    public function delete($article_id, $comment_id, Request $request)
+    {
+        $article = Article::find($article_id);
+        if ($article) {
+            $comment = Comment::find($comment_id);
+        if ($comment) {
+            if ($comment->user_id == $request->user()->id) {
+                $comment->delete();
+                return response()->json([
+                    'message' => 'Comment Successfully Deleted',
+                ], 200);
+            } else {
+                return response()->json([
+                    'message' => 'You do not have permission to delete this comment',
+                ], 403);
+            }
+        } else {
+            return response()->json([
+                'message' => 'Comment not found',
+            ], 404);
+        }
+        } else {
+            return response()->json([
+            'message' => 'No Article Found',
+            ], 400);
+        }
+}
+
 }
