@@ -14,27 +14,21 @@ use Illuminate\Support\Str;
 
 class PasswordResetController extends Controller
 {
-    // this is most important function to send mail and inside of that there are another function
     public function sendEmail(Request $request)
     {
-        // this is validate to fail send mail or true
         if (!$this->validateEmail($request->email)) {
             return $this->failedResponse();
-        }
-        //this is a function to send mail 
+        } 
         $this->send($request->email);
         return $this->successResponse();
     }
 
-    //this is a function to send mail
     public function send($email) 
     {
         $token = $this->createToken($email);
-        // token is important in send mail 
         Mail::to($email)->send(new SendMailReset($token, $email));
     }
 
-    // this is a function to get your request email that there are or not to send mail
     public function createToken($email)
     {
         $oldToken = DB::table('password_resets')->where('email', $email)->first();
@@ -58,7 +52,6 @@ class PasswordResetController extends Controller
         ]);
     }
 
-    //this is a function to get your email from database
     public function validateEmail($email)
     {
         return !!User::where('email', $email)->first();
@@ -67,7 +60,7 @@ class PasswordResetController extends Controller
     public function failedResponse()
     {
         return response()->json([
-            'error' => 'Email does\'t found on our database'
+            'error' => 'Email does\'t exist on our database'
         ], Response::HTTP_NOT_FOUND);
     }
 
