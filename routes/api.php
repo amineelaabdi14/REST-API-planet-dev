@@ -16,7 +16,8 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('forget-password', [PasswordResetController::class, 'sendEmail']);
     Route::post('reset-password', [NewPasswordController::class, 'passwordResetProcess']);
     Route::post('{article_id}/comments/create', [CommentController::class, 'create']);
-    Route::post('{article_id}/comments/{comment_id}', [CommentController::class, 'delete']);
+    Route::post('{article_id}/comments/{comment_id}/delete', [CommentController::class, 'delete']);
+    Route::post('{article_id}/comments/{comment_id}/edit', [CommentController::class, 'update']);
 });
 
 Route::apiResource('articles', ArticleController::class);
