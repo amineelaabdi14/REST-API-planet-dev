@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Role;
+use App\Models\User;
 
 class RoleController extends Controller
 {
@@ -84,6 +85,19 @@ class RoleController extends Controller
         return response()->json([
             'status' => true,
             'message' => 'Role deleted successfully!',
+        ], 200);
+    }
+
+    public function giveRole(Request $request, $id) {
+        $user = User::find($id);
+        if (!$user)
+        {
+            return response()->json(['message' => 'User not found'], 404);
+        }
+        $user->assignRole($request->role);
+        return response()->json([
+            'status' => true,
+            'message' => 'Role assigned successfully!',
         ], 200);
     }
 }

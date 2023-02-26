@@ -26,6 +26,7 @@ Route::controller(AuthController::class)->group(function () {
         Route::get('roles/{role}','show')->middleware('permission:show role');
         Route::put('roles/{role}','update')->middleware('permission:edit role');
         Route::delete('roles/{role}','destroy')->middleware('permission:delete role');
+        Route::post('roles/{id}','giveRole')->middleware('permission:assign role');
     });
 
     Route::group(['controller' => CommentController::class], function (){
