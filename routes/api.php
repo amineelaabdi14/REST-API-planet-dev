@@ -51,10 +51,12 @@ Route::controller(ArticleController::class)->group(function () {
 Route::post('/edit-profile',[EditProfileController::class,'editInfos']);
 
 Route::controller(CategoriesController::class)->group(function () {
-    Route::get('categories' , 'index')->middleware('permission:show category');
-    Route::post('categories-add', 'store')->middleware('permission:add category');
-    Route::post('categories-show', 'show')->middleware('permission:show category');
-    Route::patch('categories-edit/{Categories}', 'update')->middleware('permission:edit category');
+Route::get('categories' , 'index')->middleware('permission:show category');
+Route::post('categories-add', 'store')->middleware('permission:add category');
+Route::post('categories-show/', 'show')->middleware('permission:show category');
+Route::put('categories-edit/', 'update')->middleware('permission:edit category');
+Route::delete('categories-delete/', 'destroy')->middleware('permission:delete category');
+
 });
 
 // Route::apiResource('category', CategoriesController::class);

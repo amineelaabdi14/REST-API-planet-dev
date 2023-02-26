@@ -71,25 +71,40 @@ class CategoriesController extends Controller
      */
     public function update(Request $request, Categories $categories)
     {
-        $categories = $categories->all();
-        $categories->update($request->all());
-
-        if (!$categories) {
-            return response()->json(['message' => 'categories not found'], 404);
-        }
-
-        return response()->json([
+        $Categories = Categories::find($request->id);
+        if($Categories){
+            $Categories->update($request->all());
+            return response()->json([
             'status' => true,
             'message' => "categories Updated successfully!",
-            'categories' => $categories
+            'categories' => $Categories
         ], 200);
+
+        }else{
+            return response()->json(['message' => 'Categories not found'], 404);
+                }
+      
+        
+       
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Categories $categories)
+    public function destroy(Request $request)
     {
-        //
+        $Categories = Categories::find($request->id);
+        if($Categories){
+            Categories::destroy($request->id);
+            return response()->json([
+                'status' => true,
+                'message' => 'Article deleted successfully'
+            ], 200);
+        }else{
+            return response()->json([
+                'message' => 'Article not found'
+            ], 404);
+        }
+      
     }
 }
