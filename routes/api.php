@@ -23,10 +23,11 @@ Route::controller(AuthController::class)->group(function () {
 });
 
 Route::controller(ArticleController::class)->group(function () {
-    Route::post('articles', 'index');
-    Route::post('article-add', 'store');
-    Route::post('article/{id}', 'show');
-    Route::post('article-edit', 'update');
+    Route::get('articles', 'index');
+    Route::post('articles', 'store');
+    Route::get('articles/{id}', 'show');
+    Route::put('articles/{article}', 'update');
+    Route::delete('articles/{article}', 'destroy');
 });
 Route::post('/edit-profile',[EditProfileController::class,'editInfos']);
 
