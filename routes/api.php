@@ -33,7 +33,8 @@ Route::controller(CategoriesController::class)->group(function () {
 Route::get('categories' , 'index');
 Route::post('categories-add', 'store');
 Route::post('categories-show/', 'show');
-Route::patch('categories-edit/{Categories}', 'update');
+Route::put('categories-edit/', 'update');
+Route::delete('categories-delete/', 'destroy');
 
 });
 
