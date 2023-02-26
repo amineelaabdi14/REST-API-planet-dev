@@ -37,7 +37,6 @@ class RolesAndPermissionsSeeder extends Seeder
         Permission::create(['name' => 'delete tag']);
 
         // Create permissions for comment
-        Permission::create(['name' => 'show comment']);
         Permission::create(['name' => 'add comment']);
         Permission::create(['name' => 'edit my comment']);
         Permission::create(['name' => 'edit every comment']);

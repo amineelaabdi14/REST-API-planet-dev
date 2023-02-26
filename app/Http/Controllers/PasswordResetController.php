@@ -61,13 +61,13 @@ class PasswordResetController extends Controller
     {
         return response()->json([
             'error' => 'Email does\'t exist on our database'
-        ], Response::HTTP_NOT_FOUND);
+        ], 404);
     }
 
     public function successResponse()
     {
         return response()->json([
             'data' => 'Reset Email is send successfully, please check your inbox.'
-        ], Response::HTTP_OK);
+        ], 200);
     }
 }

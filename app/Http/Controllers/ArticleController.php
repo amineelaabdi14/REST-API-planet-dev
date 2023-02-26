@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreArticleRequest;
 use App\Models\Article;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ArticleController extends Controller
 {
@@ -21,11 +22,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-<<<<<<< HEAD
-        $articles = Article::latest()->get();
-=======
         $articles = Article::orderBy('id')->get();
->>>>>>> main
 
         return response()->json([
             'status' => 'success',
@@ -42,45 +39,6 @@ class ArticleController extends Controller
     public function store(Request  $request)
     {
         $article = Article::create($request->all());
-        return response()->json([
-            'status' => true,
-            'message' => "Article Created successfully!",
-            'article' => $article
-        ], 201);
-    }
-
-<<<<<<< HEAD
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Article  $article
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Article $article)
-    {
-        $article->find($article->id);
-        if (!$article) {
-            return response()->json(['message' => 'Article not found'], 404);
-        }
-        return response()->json($article, 200);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Article  $article
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Article $article)
-    {
-       
-
-        if (!$article) {
-            return response()->json(['message' => 'Article not found'], 404);
-        }
-        $article->update($request->all());
-=======
         return response()->json([
             'status' => true,
             'message' => "Article Created successfully!",
@@ -112,7 +70,14 @@ class ArticleController extends Controller
      */
     public function update(Request $request)
     {
+        $user = Auth::user();
         $article=Article::Find($request->id);
+
+        if(!$user->can('edit every article') && $user->id != $article->user_id)
+        {
+            return $this->apiResponse(null, 'you dont have permission to edit this article', 400);
+        }
+
         if (!$article) {
             return response()->json(['message' => 'Article not found'], 404);
         }
@@ -122,7 +87,6 @@ class ArticleController extends Controller
         $article->tags=$request->tags;
         $article->category_id=$request->category_id;
         $article->save();
->>>>>>> main
 
         return response()->json([
             'status' => true,
@@ -139,21 +103,19 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
-<<<<<<< HEAD
-=======
+        $user = Auth::user();
+        if(!$user->can('delete every article') && $user->id != $article->user_id)
+        {
+            return $this->apiResponse(null, 'you dont have permission to edit this article', 400);
+        }
+        
         $article->delete();
 
->>>>>>> main
         if (!$article) {
             return response()->json([
                 'message' => 'Article not found'
             ], 404);
         }
-<<<<<<< HEAD
-        $article->delete();
-=======
-
->>>>>>> main
         return response()->json([
             'status' => true,
             'message' => 'Article deleted successfully'

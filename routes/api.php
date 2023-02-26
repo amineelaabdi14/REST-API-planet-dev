@@ -36,18 +36,13 @@ Route::controller(AuthController::class)->group(function () {
         Route::get('comments/{comment}','show');
     });
 
-    Route::controller(ArticleController::class)->group(function () {
-        Route::post('articles', 'index');
-        Route::post('article-add', 'store');
-        Route::post('article/{id}', 'show');
-    });
 });
 
 Route::controller(ArticleController::class)->group(function () {
     Route::post('articles', 'index');
-    Route::post('article-add', 'store');
+    Route::post('article-add', 'store')->middleware('permission:add article');
     Route::post('article/{id}', 'show');
-    Route::post('article-edit', 'update');
+    Route::post('article-edit', 'update')->middleware('permission:edit my article|edit every article');
 });
 Route::post('/edit-profile',[EditProfileController::class,'editInfos']);
 
