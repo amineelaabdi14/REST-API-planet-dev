@@ -21,7 +21,11 @@ class ArticleController extends Controller
      */
     public function index()
     {
+<<<<<<< HEAD
         $articles = Article::latest()->get();
+=======
+        $articles = Article::orderBy('id')->get();
+>>>>>>> main
 
         return response()->json([
             'status' => 'success',
@@ -45,6 +49,7 @@ class ArticleController extends Controller
         ], 201);
     }
 
+<<<<<<< HEAD
     /**
      * Display the specified resource.
      *
@@ -75,6 +80,49 @@ class ArticleController extends Controller
             return response()->json(['message' => 'Article not found'], 404);
         }
         $article->update($request->all());
+=======
+        return response()->json([
+            'status' => true,
+            'message' => "Article Created successfully!",
+            'article' => $article
+        ], 201);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Article  $article
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Request  $req)
+    {
+        $article=Article::Find($req->id);
+        if (!$article) {
+            return response()->json(['message' => 'Article not found'], 404);
+        }
+        return response()->json($article, 200);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Article  $article
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request)
+    {
+        $article=Article::Find($request->id);
+        if (!$article) {
+            return response()->json(['message' => 'Article not found'], 404);
+        }
+        $article->title=$request->title;
+        $article->content=$request->content;
+        $article->author=$request->author;
+        $article->tags=$request->tags;
+        $article->category_id=$request->category_id;
+        $article->save();
+>>>>>>> main
 
         return response()->json([
             'status' => true,
@@ -91,12 +139,21 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
+<<<<<<< HEAD
+=======
+        $article->delete();
+
+>>>>>>> main
         if (!$article) {
             return response()->json([
                 'message' => 'Article not found'
             ], 404);
         }
+<<<<<<< HEAD
         $article->delete();
+=======
+
+>>>>>>> main
         return response()->json([
             'status' => true,
             'message' => 'Article deleted successfully'
