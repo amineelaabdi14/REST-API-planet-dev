@@ -40,10 +40,10 @@ Route::controller(AuthController::class)->group(function () {
 
 Route::controller(ArticleController::class)->group(function () {
     Route::get('articles', 'index');
-    Route::post('articles', 'store');
+    Route::post('articles', 'store')->middleware('permission:add article');
     Route::get('articles/{id}', 'show');
-    Route::put('articles/{article}', 'update');
-    Route::delete('articles/{article}', 'destroy');
+    Route::put('articles/{article}', 'update')->middleware('permission:edit my article|edit every article');
+    Route::delete('articles/{article}', 'destroy')->middleware('permission:delete my article|delete every article');
 });
 Route::post('/edit-profile',[EditProfileController::class,'editInfos']);
 

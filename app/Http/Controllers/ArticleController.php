@@ -68,6 +68,11 @@ class ArticleController extends Controller
      */
     public function update(Request $request,Article $article)
     {   
+        $user = Auth::user();
+        if(!$user->can('edit every article') && $user->id != $article->user_id)
+        {
+            return $this->apiResponse(null, 'you dont have permission to edit this article', 400);
+        }
         if (!$article) {
             return response()->json(['message' => 'Article not found'], 404);
         }
@@ -93,7 +98,11 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
-        // $article=Article::Find($id);
+        $user = Auth::user();
+        if(!$user->can('delete every article') && $user->id != $article->user_id)
+        {
+            return $this->apiResponse(null, 'you dont have permission to edit this article', 400);
+        }
 
         if (!$article) {
             return response()->json([
