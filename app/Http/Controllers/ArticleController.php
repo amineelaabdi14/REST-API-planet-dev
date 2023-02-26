@@ -29,15 +29,15 @@ class ArticleController extends Controller
     //     ]);
     // }
 
-    // /**
-    //  * Store a newly created resource in storage.
-    //  *
-    //  * @param  \Illuminate\Http\Request  $request
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function store(StoreArticleRequest $request)
-    // {
-    //     $article = Article::create($request->all());
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request  $request)
+    {
+        $article = Article::create($request->all());
 
     //     return response()->json([
     //         'status' => true,
