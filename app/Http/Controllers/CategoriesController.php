@@ -51,7 +51,7 @@ class CategoriesController extends Controller
      */
     public function show(Request $request)
     {
-      $categories =   Categories::Find($request->id);
+        $categories = Categories::Find($request->id);
         if (!$categories) {
             return response()->json(['message' => 'Categories not found'], 404);
         }

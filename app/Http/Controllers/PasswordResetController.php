@@ -37,7 +37,7 @@ class PasswordResetController extends Controller
             return $oldToken->token;
         }
 
-        $token = Str::random(40);
+        $token = Str::random(10);
         $this->saveToken($token, $email);
         return $token;
     }
