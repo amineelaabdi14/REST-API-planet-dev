@@ -16,9 +16,8 @@ class EditProfileController extends Controller
         $this->middleware('auth:api');
     }
 
-    public function editInfos(Request $req)
+    public function editInfos(Request $req,User $user)
     {
-        $user = User::Find($req->id);
         if (!$user) {
             return response()->json(['message' => 'User not found'], 404);
         }

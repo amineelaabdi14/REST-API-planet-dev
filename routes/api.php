@@ -29,7 +29,7 @@ Route::controller(ArticleController::class)->group(function () {
     Route::put('articles/{article}', 'update');
     Route::delete('articles/{article}', 'destroy');
 });
-Route::post('/edit-profile',[EditProfileController::class,'editInfos']);
+Route::put('/edit-profile/{user}',[EditProfileController::class,'editInfos']);
 
 Route::controller(CategoriesController::class)->group(function () {
 Route::get('categories' , 'index');
