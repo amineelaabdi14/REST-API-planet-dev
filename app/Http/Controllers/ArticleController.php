@@ -23,7 +23,6 @@ class ArticleController extends Controller
     public function index()
     {
         $articles = Article::orderBy('id')->get();
-
         return response()->json([
             'status' => 'success',
             'articles' => $articles
@@ -52,9 +51,8 @@ class ArticleController extends Controller
      * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function show(Request  $req)
+    public function show(Article  $article)
     {
-        $article=Article::Find($req->id);
         if (!$article) {
             return response()->json(['message' => 'Article not found'], 404);
         }
@@ -68,16 +66,8 @@ class ArticleController extends Controller
      * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
-    {
-        $user = Auth::user();
-        $article=Article::Find($request->id);
-
-        if(!$user->can('edit every article') && $user->id != $article->user_id)
-        {
-            return $this->apiResponse(null, 'you dont have permission to edit this article', 400);
-        }
-
+    public function update(Request $request,Article $article)
+    {   
         if (!$article) {
             return response()->json(['message' => 'Article not found'], 404);
         }
@@ -103,19 +93,14 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
-        $user = Auth::user();
-        if(!$user->can('delete every article') && $user->id != $article->user_id)
-        {
-            return $this->apiResponse(null, 'you dont have permission to edit this article', 400);
-        }
-        
-        $article->delete();
+        // $article=Article::Find($id);
 
         if (!$article) {
             return response()->json([
                 'message' => 'Article not found'
             ], 404);
         }
+        $article->delete();
         return response()->json([
             'status' => true,
             'message' => 'Article deleted successfully'
