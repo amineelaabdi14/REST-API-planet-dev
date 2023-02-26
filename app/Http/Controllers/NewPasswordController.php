@@ -27,7 +27,7 @@ class NewPasswordController extends Controller
       private function tokenNotFoundError() {
           return response()->json([
             'error' => 'Either your email or token is wrong.'
-          ],Response::HTTP_UNPROCESSABLE_ENTITY);
+          ], 422);
       }
   
       // Reset password
@@ -44,6 +44,6 @@ class NewPasswordController extends Controller
           // reset password response
           return response()->json([
             'data'=>'Password has been updated.'
-          ],Response::HTTP_CREATED);
+          ], 201);
       }
 }
