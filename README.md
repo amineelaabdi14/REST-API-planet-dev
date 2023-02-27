@@ -1,21 +1,21 @@
 # Planet.DEV REST API
 Planet.DEV REST API is a Laravel-based API that allows users to create and manage articles, categories, tags, and comments. User roles are also implemented to limit functionalities based on access permissions.
 
-Technologies Used
-Laravel
-PHP
-MySQL
-API REST
-JSON
-Documentation API (POSTMAN, OPEN API or SWAGGER)
-Authentication with Laravel via (sanctum, jwt, or passport)
-Features
-Create, edit, delete, and view articles
-Create, edit, delete, and view categories
-Create, edit, delete, and view tags
-Create, edit, delete, and view comments
-Implement user roles to limit functionalities based on access permissions
-User Stories
+#Technologies Used
+- Laravel
+- PHP
+- MySQL
+- API REST
+- JSON
+- Documentation API (POSTMAN, OPEN API or SWAGGER)
+- Authentication with Laravel via (sanctum, jwt, or passport)
+#Features
+- Create, edit, delete, and view articles
+- Create, edit, delete, and view categories
+- Create, edit, delete, and view tags
+- Create, edit, delete, and view comments
+- Implement user roles to limit functionalities based on access permissions
+#User Stories
 As a user, I can create an account using my email address and a secure password.
 As a user, I can log in to my existing account using my email address and password.
 As a user, I can reset my password using the email address associated with my account.
