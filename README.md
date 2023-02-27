@@ -1,7 +1,7 @@
 # Planet.DEV REST API
 Planet.DEV REST API is a Laravel-based API that allows users to create and manage articles, categories, tags, and comments. User roles are also implemented to limit functionalities based on access permissions.
 
-#Technologies Used
+# Technologies Used
 - Laravel
 - PHP
 - MySQL
@@ -9,13 +9,13 @@ Planet.DEV REST API is a Laravel-based API that allows users to create and manag
 - JSON
 - Documentation API (POSTMAN, OPEN API or SWAGGER)
 - Authentication with Laravel via (sanctum, jwt, or passport)
-#Features
+# Features
 - Create, edit, delete, and view articles
 - Create, edit, delete, and view categories
 - Create, edit, delete, and view tags
 - Create, edit, delete, and view comments
 - Implement user roles to limit functionalities based on access permissions
-#User Stories
+# User Stories
 - As a user, I can create an account using my email address and a secure password.
 - As a user, I can log in to my existing account using my email address and password.
 - As a user, I can reset my password using the email address associated with my account.
@@ -28,7 +28,7 @@ Planet.DEV REST API is a Laravel-based API that allows users to create and manag
 - As an administrator, I can delete comments.
 - As an administrator, I can create, edit, and delete categories and tags.
 - As an administrator, I can edit and delete user roles and assign access permissions to each role.
-#Installation
+# Installation
 To install and run this project, please follow these steps:
 
 - Clone the repository
@@ -37,7 +37,7 @@ To install and run this project, please follow these steps:
 - Rename .env.example to .env and configure the database connection
 - Run migrations by running php artisan migrate
 - Start the server by running php artisan serve
-#API Endpoints
+# API Endpoints
 This API has the following endpoints:
 
 - /api/auth/register: Register a new user
@@ -56,8 +56,8 @@ This API has the following endpoints:
 - /api/roles/{id}: Get, update or delete a role
 For more details on how to use each endpoint, please refer to the API documentation.
 
-#API Documentation
+# API Documentation
 The API documentation is available in docs folder. It provides detailed information on how to use each endpoint and the expected responses.
 
-#License
+# License
 This project is licensed under the MIT License.
