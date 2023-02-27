@@ -1,4 +1,4 @@
-Planet.DEV REST API
+# Planet.DEV REST API
 Planet.DEV REST API is a Laravel-based API that allows users to create and manage articles, categories, tags, and comments. User roles are also implemented to limit functionalities based on access permissions.
 
 Technologies Used
